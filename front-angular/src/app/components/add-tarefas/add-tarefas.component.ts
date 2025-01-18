@@ -7,9 +7,10 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-tarefas',
+  standalone:true,
   imports: [FormsModule, ButtonComponent,CommonModule],
 templateUrl: './add-tarefas.component.html',
-  styleUrl: './add-tarefas.component.css'
+  styleUrls: ['./add-tarefas.component.css']
 })
 export class AddTarefasComponent {
 

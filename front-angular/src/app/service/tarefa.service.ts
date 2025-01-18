@@ -9,7 +9,7 @@ import { throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class TarefaService {
-// Url corespondete ao servidor  json criado no db.json
+// Url corespondete ao servidor  json criado no django
   private apiUrl = 'http://localhost:8000/';
   httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
@@ -29,9 +29,14 @@ export class TarefaService {
   }
 
 // função para Concluir tarefa  
-  updateTarefa(tarefa: Task): Observable<any>{
-    return this.http.put<Task>(`${this.apiUrl + 'Tarefa/'}/${tarefa.id}`, tarefa); // atualiza a tarefa
-  }
+updateTarefa(tarefa: Task): Observable<Task> {
+  const url = `${this.apiUrl}/${tarefa.id}`;
+  return this.http.put<Task>(url, tarefa, {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  });
+}
 
  // função para adicionar tarefa
 addTarefa(tarefa: Task): Observable<any>{

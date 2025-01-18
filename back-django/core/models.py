@@ -5,6 +5,7 @@ class Tarefa(models.Model):
     tarefa = models.CharField(max_length=100)
     categoria = models.CharField(max_length=100)
     concluido = models.BooleanField(default=False)
+    
 
 
 

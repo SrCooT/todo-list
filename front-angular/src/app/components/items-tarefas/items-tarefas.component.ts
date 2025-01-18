@@ -15,8 +15,11 @@ templateUrl: './items-tarefas.component.html',
 export class ItemsTarefasComponent {
   @Input() tarefa!:Task;//introduzindo a tarefa
   @Output() onDeleteTarefa= new EventEmitter<Task>(); //evento para deletar a tarefa
-  @Output() onCompletedTarefa= new EventEmitter<Task>(); //evento para completar a tarefa
+  @Output() onCompletedTarefa = new EventEmitter<Task>();//evento para completar a tarefa
   @Output() onEditTarefa= new EventEmitter<Task>();//evento para editar a tarefa
+
+
+
   onEdit() {
     this.onEditTarefa.emit(this.tarefa);
   }
@@ -31,10 +34,19 @@ export class ItemsTarefasComponent {
   //Eventos
   onDelete(tarefa: Task){
     this.onDeleteTarefa.emit(tarefa);
+    console.log('clicada');
   }
 
   onCompleted(tarefa: Task){
+    tarefa.concluido = !tarefa.concluido;  
     this.onCompletedTarefa.emit(tarefa);
+    console.log('Tarefa concluída alterada');
+  }
+
+  onEdita(tarefa: Task){
+    this.onEditTarefa.emit(tarefa);
+    console.log('clicado');
   }
   
 }
+

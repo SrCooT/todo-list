@@ -8,8 +8,8 @@
 
 <form (ngSubmit)="onSubmit()" *ngIf="mostrarAddTarefa" class="add-form">
     <div>
-        <label for="text">Tarefa:</label>
-        <input type="text" id="text" name="text" class="form-control" placeholder="Digite a Tarefa" [(ngModel)]="tarefa">
+        <label for="tarefa">Tarefa:</label>
+        <input type="text" id="tarefa" name="tarefa" class="form-control" placeholder="Digite a Tarefa" [(ngModel)]="tarefa" required>
     </div>
     <div class="mb-4">
         <label for="categoria">Categoria</label>

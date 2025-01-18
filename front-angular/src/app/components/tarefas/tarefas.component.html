@@ -1,7 +1,5 @@
-<!-- ngFor utilizado para percorrero tudo oque tem dentro da lista de tarefa mais nao pode esquecer de importar o CommonModule na parte dos componentes ts  -->
-<app-add-tarefas></app-add-tarefas>
-<app-items-tarefas *ngFor="let tarefa of tarefas">
-</app-items-tarefas> 
 
-
-
+    <app-add-tarefas></app-add-tarefas>
+    <app-items-tarefas *ngFor="let tarefa of tarefas" [tarefa]="tarefa" (onCompletedTarefa)="updateTarefa($event)"></app-items-tarefas>
+    <router-outlet></router-outlet>
+  

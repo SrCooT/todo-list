@@ -4,11 +4,14 @@ import { Task } from '../../../Task';
 import { CommonModule } from '@angular/common';
 import { AddTarefasComponent } from '../add-tarefas/add-tarefas.component';
 import { ItemsTarefasComponent } from '../items-tarefas/items-tarefas.component';
+import { RouterOutlet } from '@angular/router';
+
 
 
 @Component({
   selector: 'app-tarefas',
-  imports: [CommonModule,AddTarefasComponent,ItemsTarefasComponent,],
+  imports: [CommonModule,AddTarefasComponent,ItemsTarefasComponent,RouterOutlet],
+
 
 templateUrl: './tarefas.component.html',
   styleUrls: ['./tarefas.component.css']
@@ -49,9 +52,8 @@ deleteTarefa(tarefa: Task) {
   });
 }
 
-updateTarefa(tarefa: Task) {
-  tarefa.concluido = !tarefa.concluido;
-  this.tarefaService.updateTarefa(tarefa).subscribe();
+updateTarefa(tarefa: Task): void {
+  this.tarefas = this.tarefas.map((t: Task) => t.id === tarefa.id ? tarefa : t);
 }
 
 }

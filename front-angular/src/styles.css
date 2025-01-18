@@ -8,21 +8,20 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background: rgb(61,130,152);
-background: linear-gradient(45deg, rgba(61,130,152,1) 38%, rgba(18,50,194,0.9582366589327146) 80%);
+  background: rgb(8, 8, 8);
+background: linear-gradient(45deg, rgb(39, 57, 221) 38%, rgba(18,50,194,0.9582366589327146) 80%);
 height: 100vh;
 }
 
 .container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border: 1px solid rgb(3, 10, 9);
-  padding-top: 50px;
+  max-width: 900px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  background-color: rgba(144, 176, 204, 0.596);
+  border: 1px solid rgb(7, 7, 7);
+  padding: 30px;
   border-radius: 5px;
-
 
 }
 .btn {
