@@ -1,27 +1,52 @@
-.task{
+.task {
     background: #f4f4f4;
     margin: 5px;
     cursor: pointer;
     padding: 10px 20px;
     border-radius: 10px;
     transition: 0.3s;
-   
-}
+    }
 
-.task.completed{
+.task.completed {
     border-left: 5px solid green;
     color: #000;
     background-color: rgba(136, 156, 116, 0.479);
+    }
 
-}
-
-.task h3{
+.task h3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    }
+
+.task fa-icon {
+    font-size: 20px;
+    height: 10px;
+    }
+
+    .edit-task{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin: 5px;
+        width: 100%;
+        
+    }
+
+.edit-task input, .edit-task select {
+    transition: 0,5s;
+    display: block;
+    width: 100%;
+    height: 50px;
+    margin: 5px;
+    padding: 3px 7px;
+    font-size: 20px;
+    border-radius: 10px;
 }
 
-.task fa-icon{
-    font-size: 20px;
-    height: 10px;    
+.options {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 25px;
 }

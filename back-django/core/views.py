@@ -4,14 +4,13 @@ from rest_framework.response import Response
 from .models import Tarefa
 from .serializers import TarefaSerializer
 
-
 class TarefaViewSet(viewsets.ModelViewSet):
     queryset = Tarefa.objects.all()
     serializer_class = TarefaSerializer
 
-    @action(detail=True, methods=['patch'])
-    def marcar_concluido(self, request, pk=None):
-        tarefa = self.get_object()
-        tarefa.concluido = True
-        tarefa.save()
-        return Response({'status': 'Tarefa marcada como concluída!'}, status=status.HTTP_200_OK)
+    
+@action(detail=True, methods=['patch'])
+def alternar_concluido(self, request, pk=None):
+    tarefa = self.get_object()
+    tarefa.alternar_concluido()
+    return Response({'status': f'Tarefa agora está {"Concluído" if tarefa.concluido == "True" else "Não Concluído"}'}, status=status.HTTP_200_OK)

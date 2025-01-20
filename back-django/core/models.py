@@ -1,14 +1,14 @@
 from django.db import models
 
-# Create your models here.
 class Tarefa(models.Model):
     tarefa = models.CharField(max_length=100)
     categoria = models.CharField(max_length=100)
-    concluido = models.BooleanField(default=False)
-    
+    concluido = models.BooleanField()
 
+    def alternar_concluido(self):
+        # Alterna entre 'True' e 'False'
+        self.concluido = not self.concluido
+        self.save()
 
-
-    
     def __str__(self):
-        return self.tarefa + " / " + self.categoria + " /" + self.concluido 
+        return self.tarefa + " / " + self.categoria + " / " + str(self.concluido )

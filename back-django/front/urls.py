@@ -10,4 +10,5 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
+    path('tarefas/<int:id>/marcar_concluido/', TarefaViewSet.as_view({'patch': 'marcar_concluido'})),
 ]

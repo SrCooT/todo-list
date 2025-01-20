@@ -1,10 +1,19 @@
 <div *ngIf="tarefa" class="task" [ngClass]="{'completed': tarefa.concluido}">
     <h3>
       {{tarefa.tarefa}}
+      <div class=options>
       <fa-icon [icon]="faTimes" [ngStyle]="{'color': 'red'}" (click)="onDelete(tarefa)"></fa-icon>
-      <fa-icon [icon]="faPen" [ngStyle]="{'color': 'blue'}" (click)="onEdita(tarefa)"></fa-icon>
+      <fa-icon [icon]="faPen" [ngStyle]="{'color': 'blue'}" (click)="onEdit()"></fa-icon>
       <fa-icon [icon]="faCheck" [ngStyle]="{'color': '#000'}" (click)="onCompleted(tarefa)"></fa-icon>
+      </div>
     </h3>
     <p>{{tarefa.categoria}}</p>
   </div>
-  
+  <div *ngIf="editando" class="edit-task">
+    <input [(ngModel)]="tarefa.tarefa"/>
+    <select [(ngModel)]="tarefa.categoria" >
+      <option *ngFor="let categoria of categoria" [value]="categoria">{{categoria}}</option>
+    </select>
+    <button (click)="salvarEdicao()">Salvar</button>
+    <button (click)="cancelarEdicao()">Cancelar</button>
+  </div>

@@ -40,20 +40,41 @@ export class TarefasComponent implements OnInit {
   }
 
 
-addTarefa(tarefa: Task) {
-  this.tarefaService.addTarefa(tarefa).subscribe((tarefa) => {
-    this.tarefas.push(tarefa);
-  });
-}
-
 deleteTarefa(tarefa: Task) {
-  this.tarefaService.deleteTarefa(tarefa).subscribe(() => {
-    this.tarefas = this.tarefas.filter((t) => t.id !== tarefa.id);
+  this.tarefaService.deleteTarefa(tarefa).subscribe({
+    next: () => {
+      this.tarefas = this.tarefas.filter((t: Task) => t.id !== tarefa.id); // utilizado chatgpt para adicionar o next que veio como a nova atualização //
+      console.log("Tarefa deletada com sucesso");
+    },
+    error: (error: any) => {
+      console.log("aconteceu um erro ao deletar a tarefa", error.message);
+    }
   });
 }
 
 updateTarefa(tarefa: Task): void {
-  this.tarefas = this.tarefas.map((t: Task) => t.id === tarefa.id ? tarefa : t);
+  this.tarefaService.updateTarefa(tarefa).subscribe({
+    next: (updatedTarefa: Task) => {
+      this.tarefas = this.tarefas.map((t: Task) => t.id === updatedTarefa.id ? updatedTarefa : t);
+    },
+    error: (error: any) => {
+      console.error("Erro ao atualizar a tarefa", error);
+    }
+  });
 }
 
+editTarefa(tarefa: Task): void {
+  this.tarefaService.alterarTarefa(tarefa).subscribe({
+    next: (updatedTask: Task) => {
+      // Atualizar a lista de tarefas com a tarefa editada
+      this.tarefas = this.tarefas.map((t: Task) =>
+        t.id === updatedTask.id ? updatedTask : t
+      );
+      console.log('Tarefa editada com sucesso:', updatedTask);
+    },
+    error: (err: any) => {
+      console.error('Erro ao editar tarefa:', err.message);
+    }
+  });
+}
 }

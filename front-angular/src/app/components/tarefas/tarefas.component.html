@@ -1,5 +1,7 @@
 
     <app-add-tarefas></app-add-tarefas>
-    <app-items-tarefas *ngFor="let tarefa of tarefas" [tarefa]="tarefa" (onCompletedTarefa)="updateTarefa($event)"></app-items-tarefas>
+    <app-items-tarefas *ngFor="let tarefa of tarefas" [tarefa]="tarefa" (onCompletedTarefa)="updateTarefa($event)"
+    (onDeleteTarefa)="deleteTarefa($event)"
+    (onEditTarefa)="editTarefa($event)"></app-items-tarefas>
     <router-outlet></router-outlet>
   

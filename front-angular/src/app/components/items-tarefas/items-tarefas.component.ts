@@ -3,11 +3,12 @@ import { Task } from '../../../Task';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCheck, faTimes, faPen } from '@fortawesome/free-solid-svg-icons'
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-items-tarefas',
-  imports: [FontAwesomeModule,CommonModule],
-templateUrl: './items-tarefas.component.html',
+  imports: [FontAwesomeModule,CommonModule,FormsModule],
+  templateUrl: './items-tarefas.component.html',
   styleUrls: ['./items-tarefas.component.css']
 })
 // ItemsTarefasComponent é um componente que recebe uma tarefa e exibe na tela
@@ -19,34 +20,39 @@ export class ItemsTarefasComponent {
   @Output() onEditTarefa= new EventEmitter<Task>();//evento para editar a tarefa
 
 
-
-  onEdit() {
-    this.onEditTarefa.emit(this.tarefa);
-  }
-  
-  
 //Icones''
   faTimes = faTimes
   faCheck = faCheck
   faPen = faPen
   
+//Propriedades
+  editando = false;
 
+  categoria: string[] = ['Casa', 'faculdade', 'academia', 'lazer', 'trabalho'];
+  
   //Eventos
   onDelete(tarefa: Task){
     this.onDeleteTarefa.emit(tarefa);
     console.log('clicada');
   }
 
+
   onCompleted(tarefa: Task){
     tarefa.concluido = !tarefa.concluido;  
     this.onCompletedTarefa.emit(tarefa);
-    console.log('Tarefa concluída alterada');
-  }
-
-  onEdita(tarefa: Task){
-    this.onEditTarefa.emit(tarefa);
-    console.log('clicado');
   }
   
+  onEdit() {
+    this.editando = true; // Ativa o modo de edição
+  } 
+
+  salvarEdicao() {
+    this.onEditTarefa.emit(this.tarefa); // Emite a tarefa editada
+    this.editando = false; // Sai do modo de edição
+  }
+  
+  cancelarEdicao() {
+    this.editando = false; // Sai do modo de edição sem salvar
+  }
 }
 
